@@ -18,9 +18,9 @@ jobs:
 
     steps:
       - name: 
-        run: echo "STAGING"
+        run: echo "DEVELOPMENT!!"
 
-      - name: 
+      - name: Current branch
         run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
         
       
