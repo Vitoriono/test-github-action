@@ -5,7 +5,7 @@ on:
     inputs:
       name:
         type: choice
-        description: "Add branchname for deployment"
+        description: "Select branchname !"
         required: true
         options: 
         - devops/dev
@@ -17,7 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send greeting
+      - name: Original Data
+        run: "PRODUCTION!!" 
+
+      - name: Current branch
         run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
 
       - name: Checkout
@@ -31,32 +34,3 @@ jobs:
 
 
 
-# name: Solar System Workflow
-
-# on: 
-#   push:
-#     branches:
-#       - main
-#       - 'feature/*'
-
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       name:
-#        description: "Required add env deployment!!"
-#        required: true
-#        default: 'development'
-#        type: choice
-#        options: 
-#        - development
-#        - staging
-#        - production
-
-# jobs:
-#   init:
-#     name: Build and Deploy
-#     runs-on: ubuntu-20.04
-#     steps:
-#       - run: echo "This is branch ${{ github.event.inputs.name }} !!"
-#       - name: Checkout
-#         uses: actions/checkout@v2
