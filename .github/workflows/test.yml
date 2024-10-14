@@ -3,7 +3,7 @@ name: Wor_Dispatch_Input_Branch
 on:
   workflow_dispatch:
     inputs:
-      name:
+      ref_name:
         type: choice
         description: "Select branchname !"
         required: true
@@ -11,6 +11,9 @@ on:
         - devops/dev
         - devops/prod
         - devops/staging
+
+env:
+  REF_INPUT: ${{ github.event.inputs.ref_name }}
 
 jobs:
   testin-flow:
@@ -21,10 +24,10 @@ jobs:
         run: echo "DEVELOPMENT!!"
 
       - name: Current branch
-        run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
+        run: echo "Hello am on ${{ env.REF_INPUT }} branch!!"
         
       
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.name }}
+          ref: ${{ env.REF_INPUT }}
