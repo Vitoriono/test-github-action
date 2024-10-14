@@ -1,4 +1,35 @@
-name: Solar System Workflow
+name: Mixed inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+      message:
+        required: true
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+
+
+
+
+
+# name: Solar System Workflow
 
 # on: 
 #   push:
@@ -6,24 +37,24 @@ name: Solar System Workflow
 #       - main
 #       - 'feature/*'
 
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-       description: "Required add env deployment!!"
-       required: true
-       default: 'development'
-       type: choice
-       options: 
-       - development
-       - staging
-       - production
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       name:
+#        description: "Required add env deployment!!"
+#        required: true
+#        default: 'development'
+#        type: choice
+#        options: 
+#        - development
+#        - staging
+#        - production
 
-jobs:
-  init:
-    name: Build and Deploy
-    runs-on: ubuntu-20.04
-    steps:
-      - run: echo "This is branch ${{ github.event.inputs.name }} !!"
-      - name: Checkout
-        uses: actions/checkout@v2
+# jobs:
+#   init:
+#     name: Build and Deploy
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - run: echo "This is branch ${{ github.event.inputs.name }} !!"
+#       - name: Checkout
+#         uses: actions/checkout@v2
