@@ -1,0 +1,16 @@
+name: Solar System Workflow
+
+on: 
+  push:
+    branches:
+      - main
+      - 'feature/*'
+
+jobs:
+  init:
+    name: Build and Deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo "This is branch ${{ github.ref_name }} !!"
+      - name: Checkout
+        uses: actions/checkout@v2
