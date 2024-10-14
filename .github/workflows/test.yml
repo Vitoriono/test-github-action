@@ -8,9 +8,9 @@ on:
         description: "Add branchname for deployment"
         required: true
         options: 
-        - develop
-        - production
-        - staging
+        - devops/dev
+        - devops/prod
+        - devops/staging
 
 jobs:
   testin-flow:
