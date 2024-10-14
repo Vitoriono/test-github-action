@@ -1,16 +1,27 @@
 name: Solar System Workflow
 
-on: 
-  push:
-    branches:
-      - main
-      - 'feature/*'
+# on: 
+#   push:
+#     branches:
+#       - main
+#       - 'feature/*'
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+       type: choice
+       description: Who to greet
+       options: 
+       - development
+       - staging
+       - production
 
 jobs:
   init:
     name: Build and Deploy
     runs-on: ubuntu-20.04
     steps:
-      - run: echo "This is branch ${{ github.ref_name }} !!"
+      - run: echo "This is branch ${{ github.event.inputs.name }} !!"
       - name: Checkout
         uses: actions/checkout@v2
