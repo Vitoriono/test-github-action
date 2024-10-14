@@ -13,12 +13,19 @@ on:
         - staging
 
 jobs:
-  greet:
+  testin-flow:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Send greeting
-      run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
+      - name: Send greeting
+        run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.name }}
+
+    
 
 
 
