@@ -1,19 +1,25 @@
 name: Wor_Dispatch_Input_Branch
 
 on:
-  workflow_dispatch:
-    inputs:
-      ref_name:
-        type: choice
-        description: "Select branchname !"
-        required: true
-        options: 
-        - devops/dev
-        - devops/prod
-        - devops/staging
+  push:
+    branches:
+      - devops/*
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       ref_name:
+#         type: choice
+#         description: "Select branchname !"
+#         required: true
+#         options: 
+#         - devops/dev
+#         - devops/prod
+#         - devops/staging
 
 env:
-  REF_INPUT: ${{ github.event.inputs.ref_name }}
+  # REF_INPUT: ${{ github.event.inputs.ref_name }}
+  REF_INPUT: ${{ github.ref_name }}
 
 jobs:
   testin-flow:
