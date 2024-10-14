@@ -1,21 +1,16 @@
-name: Mixed inputs
+name: Wor_Dispatch_Input_Branch
 
 on:
   workflow_dispatch:
     inputs:
       name:
         type: choice
-        description: Who to greet
-        options: 
-        - monalisa
-        - cschleiden
-      message:
+        description: "Add branchname for deployment"
         required: true
-      use-emoji:
-        type: boolean
-        description: Include 🎉🤣 emojis
-      environment:
-        type: environment
+        options: 
+        - develop
+        - production
+        - staging
 
 jobs:
   greet:
@@ -23,7 +18,7 @@ jobs:
 
     steps:
     - name: Send greeting
-      run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+      run: echo "Hello am on ${{ github.event.inputs.name }} branch!!"
 
 
 
