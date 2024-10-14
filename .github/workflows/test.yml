@@ -10,8 +10,10 @@ on:
   workflow_dispatch:
     inputs:
       name:
+       description: "Required add env deployment!!"
+       required: true
+       default: 'development'
        type: choice
-       description: Who to greet
        options: 
        - development
        - staging
