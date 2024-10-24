@@ -5,30 +5,29 @@ on:
     branches:
       - devops/*
 
-jobs:
-  long_loop:
-    runs-on: ubuntu-latest
-
     concurrency:
       group: ${{ github.event.inputs.environment }}-environment
       cancel-in-progress: true  # Cancel any in-progress jobs for the same environment
 
+env:
+  # REF_INPUT: ${{ github.event.inputs.ref_name }}
+  REF_INPUT: ${{ github.ref_name }}
+
+jobs:
+  testin-flow:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Start Long Loop
-        run: |
-          echo "Starting long loop..."
+      - name: Original Data
+        run: echo "DEVELOPMENT!!"
 
-          # Define the loop to run for a long time
-          for i in {1..10000}; do
-            echo "Loop iteration $i"
+      - name: Current branch
+        run: echo "Hello am on ${{ env.REF_INPUT }} branch!!"
+        
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.REF_INPUT }}
 
-            # Sleep for 30 seconds between iterations to extend runtime
-            sleep 30
-
-            # Check if it's time to break the loop early (optional)
-            if [ $i -eq 5000 ]; then
-              echo "Reached halfway, continuing..."
-            fi
-          done
-
-          echo "Long loop completed."
+   
