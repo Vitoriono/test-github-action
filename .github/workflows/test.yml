@@ -5,8 +5,13 @@ on:
     branches:
       - devops/*
 
+env:
+  # REF_INPUT: ${{ github.event.inputs.ref_name }}
+  REF_INPUT: ${{ github.ref_name }}
+  # CURRENT_CONTXT: 'prod'
+
 concurrency:
-  group: ${{ github.workflow }}_environment                  
+  group: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}_environment                  
   cancel-in-progress: true                                                          
 
 # on:
@@ -25,9 +30,6 @@ concurrency:
     #   group: ${{ github.ref }}-environment
       # cancel-in-progress: false  # Cancel any in-progress jobs for the same environment
 
-# env:
-#   # REF_INPUT: ${{ github.event.inputs.ref_name }}
-#   REF_INPUT: ${{ github.ref_name }}
 
 jobs:
   testin-flow:
