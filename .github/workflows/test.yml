@@ -3,6 +3,7 @@ name: SLEEP Simple Workflow
 on:
   push:
     branches:
+      - main
       - devops/*
 
 env:
