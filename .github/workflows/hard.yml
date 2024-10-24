@@ -5,9 +5,9 @@ on:
     branches:
       - devops/*
 
-    concurrency:
-      group: ${{ github.event.inputs.environment }}-environment
-      cancel-in-progress: false  # Cancel any in-progress jobs for the same environment
+    # concurrency:
+    #   group: ${{ github.event.inputs.environment }}-environment
+    #   cancel-in-progress: false  # Cancel any in-progress jobs for the same environment
 
 env:
   # REF_INPUT: ${{ github.event.inputs.ref_name }}
