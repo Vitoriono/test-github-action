@@ -17,8 +17,8 @@ on:
 #         - devops/prod
 #         - devops/staging
 
-    concurrency:
-      group: ${{ github.ref }}-environment
+    # concurrency:
+    #   group: ${{ github.ref }}-environment
       # cancel-in-progress: false  # Cancel any in-progress jobs for the same environment
 
 env:
