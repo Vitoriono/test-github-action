@@ -3,12 +3,11 @@ name: SLEEP Simple Workflow
 on:
   push:
     branches:
-      - devops/*
+      - devops/*          
 
 env:
   # REF_INPUT: ${{ github.event.inputs.ref_name }}
   REF_INPUT: ${{ github.ref_name }}
-  # CURRENT_CONTXT: 'prod'
 
 concurrency:
   group: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}_environment                  
