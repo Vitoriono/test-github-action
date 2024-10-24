@@ -11,7 +11,7 @@ env:
   # CURRENT_CONTXT: 'prod'
 
 concurrency:
-  group: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}_environment                  
+  group: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}_environment                      
   cancel-in-progress: true                                                          
 
 # on:
@@ -36,10 +36,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sleep
-        run: sleep 40
-
-
+      
       - name: Original Data
         run: echo "DEVELOPMENT!!"
 

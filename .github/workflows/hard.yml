@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Sleep
+        run: sleep 40
+
       - name: Original Data
         run: echo "DEVELOPMENT!!"
 
