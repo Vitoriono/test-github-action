@@ -38,7 +38,7 @@ jobs:
         run: echo "DEVELOPMENT!!"
 
       - name: Sleep
-        run: sleep 10
+        run: sleep 20
 
       - name: Current branch
         run: echo "Hello am on ${{ env.REF_INPUT }} branch!!"
