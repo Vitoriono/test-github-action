@@ -6,7 +6,7 @@ on:
       - devops/*
 
 concurrency:
-  group: ${{ github.ref }}_environment             
+  group: ${{ github.ref }}_environment                 
   cancel-in-progress: false           
 
 # on:
