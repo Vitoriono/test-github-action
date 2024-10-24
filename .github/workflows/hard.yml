@@ -5,9 +5,9 @@ on:
     branches:
       - devops/*
 
-# concurrency:
-#   group: ${{ github.workflow }}_environment
-#   cancel-in-progress: false  
+concurrency:
+  group: ${{ github.workflow }}_environment
+  cancel-in-progress: false  
     
 
 env:
