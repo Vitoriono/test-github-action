@@ -1,4 +1,4 @@
-name: SLEEP Simple Workflow 
+name: SLEEP Simple Workflow  
 
 on:
   push:
