@@ -2,7 +2,7 @@ name: TESTIN Simple Workflow
 
 on:
   push:
-    branches:
+    branches:           
       - main
       - devops/*
 
