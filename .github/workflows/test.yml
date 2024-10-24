@@ -1,4 +1,4 @@
-name: Wor_Dispatch_Input_Branch
+name: Simple Workflow
 
 on:
   push:

@@ -1,12 +1,4 @@
-name: Resource Intensive Workflow
-
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       test_size:
-#         description: 'Size of test data (MB)'
-#         required: true
-#         default: '100'
+name: TESTIN Running Loop Workflow
 
 on:
   push:
@@ -14,54 +6,29 @@ on:
       - devops/*
 
 jobs:
-  stress_cpu_memory:
+  long_loop:
     runs-on: ubuntu-latest
+
+    concurrency:
+      group: ${{ github.event.inputs.environment }}-environment
+      cancel-in-progress: true  # Cancel any in-progress jobs for the same environment
+
     steps:
-      - name: Install stress utility
-        run: sudo apt-get install -y stress
-
-      - name: CPU and Memory Stress Test
+      - name: Start Long Loop
         run: |
-          echo "Starting CPU and Memory stress test"
-          # Stress CPU with 4 workers, and stress memory with 2GB for 120 seconds
-          stress --cpu 4 --vm 2 --vm-bytes 2G --timeout 120
+          echo "Starting long loop..."
 
-  data_sort:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate large file for sorting
-        run: |
-          echo "Generating a large random data file..."
-          base64 /dev/urandom | head -c $(( 1024 * 1024 * ${{ github.event.inputs.test_size }} )) > largefile.txt
+          # Define the loop to run for a long time
+          for i in {1..10000}; do
+            echo "Loop iteration $i"
 
-      - name: Sort large file
-        run: |
-          echo "Sorting the large file..."
-          time sort largefile.txt -o sortedfile.txt
+            # Sleep for 30 seconds between iterations to extend runtime
+            sleep 30
 
-  parallel_job_1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Job 1 - Stress with CPU and Disk
-        run: |
-          echo "Job 1: Stress CPU and Disk"
-          dd if=/dev/zero of=tempfile bs=1M count=2048
-          stress --cpu 2 --io 4 --timeout 60
+            # Check if it's time to break the loop early (optional)
+            if [ $i -eq 5000 ]; then
+              echo "Reached halfway, continuing..."
+            fi
+          done
 
-  parallel_job_2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Job 2 - Large Matrix Multiplication
-        run: |
-          echo "Job 2: Performing large matrix multiplication..."
-          python -c "import numpy as np; a = np.random.rand(5000,5000); np.dot(a,a)"
-
-  parallel_job_3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Job 3 - File Compression and Decompression
-        run: |
-          echo "Job 3: Compressing and decompressing a large file..."
-          dd if=/dev/zero of=bigfile bs=1M count=3000
-          time gzip bigfile
-          time gunzip bigfile.gz
+          echo "Long loop completed."
