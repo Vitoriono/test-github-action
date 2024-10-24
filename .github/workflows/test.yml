@@ -5,6 +5,10 @@ on:
     branches:
       - devops/*
 
+concurrency:
+  group: ${{ github.workflow }}_environment
+  cancel-in-progress: false 
+
 # on:
 #   workflow_dispatch:
 #     inputs:
