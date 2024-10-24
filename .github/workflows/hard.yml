@@ -6,13 +6,13 @@ on:
       - devops/*       
 
 concurrency:
-  group: ${{ github.ref_name }}_environment
+  group: ${{ github.ref }}_environment
   cancel-in-progress: false      
     
 
-env:
-  # REF_INPUT: ${{ github.event.inputs.ref_name }}
-  REF_INPUT: ${{ github.ref_name }}
+# env:
+#   # REF_INPUT: ${{ github.event.inputs.ref_name }}
+#   REF_INPUT: ${{ github.ref_name }}
 
 jobs:
   testin-flow:
