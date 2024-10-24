@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - devops/*       
+      - devops/*                
 
 concurrency:
   group: ${{ github.workflow }}_environment                                 
