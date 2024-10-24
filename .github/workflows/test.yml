@@ -1,4 +1,4 @@
-name: TESTIN Simple Workflow  
+name: TESTIN Simple Workflow                 
 
 on:
   push:
