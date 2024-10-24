@@ -1,4 +1,4 @@
-name: SLEEP Simple Workflow  
+name: TESTIN Simple Workflow  
 
 on:
   push:
