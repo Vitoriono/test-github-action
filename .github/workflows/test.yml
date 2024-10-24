@@ -19,7 +19,7 @@ on:
 
     concurrency:
       group: ${{ github.event.inputs.environment }}-environment
-      cancel-in-progress: true  # Cancel any in-progress jobs for the same environment
+      cancel-in-progress: false  # Cancel any in-progress jobs for the same environment
 
 env:
   # REF_INPUT: ${{ github.event.inputs.ref_name }}
