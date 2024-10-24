@@ -34,11 +34,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Sleep
+        run: sleep 40
+
+
       - name: Original Data
         run: echo "DEVELOPMENT!!"
 
-      - name: Sleep
-        run: sleep 20
 
       - name: Current branch
         run: echo "Hello am on ${{ env.REF_INPUT }} branch!!"
